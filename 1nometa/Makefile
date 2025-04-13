@@ -1,6 +1,7 @@
 obj-m = comfile.o
 kver = $(shell uname -r)
-all: a.com comfile.ko
+
+all: a.com b.com comfile.ko
 
 %.ko: %.c
 	$(MAKE) -C /lib/modules/$(kver)/build M=$(PWD) modules
