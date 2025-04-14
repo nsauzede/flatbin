@@ -1,0 +1,20 @@
+This distribution contains the source code discussed in the appendix
+to the essay "My Own Private Binary", which can be found at
+
+    http://www.muppetlabs.com/~breadbox/txt/mopb-app.html
+
+and includes version 0.3 of the comfile kernel module, the rudimentary
+beginning of a standard library, and a handful of example programs.
+
+See the above essay for further details.
+
+Copyright 2019 by Brian Raiter <breadbox@muppetlabs.com>.
+
+The files contained in this distribution are free software. The
+comfile kernel module is licensed under the GNU General Public
+License; either version 2 of the License, or (at your option) any
+later version. The remaining files of this distribution can be copied
+and distributed, with or without modification, in any medium without
+royalty provided the copyright notice and this notice are preserved.
+All files in this distribution are offered as-is, without any
+warranty.
