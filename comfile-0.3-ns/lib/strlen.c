@@ -1,6 +1,6 @@
 #include "libcom.h"
 
-long strlen(char const *str)
+long unsigned int strlen(char const *str)
 {
     long n;
 

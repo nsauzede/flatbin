@@ -7,5 +7,14 @@ SECTIONS
   .main 0x10000 : { *(.main) }
   .text : { *(.text) *(.rodata) }
   .data : { *(.data) *(.bss) }
-  /DISCARD/ : { *(.eh_frame) }
+  /DISCARD/ : {
+    *(.bss)
+    *(.note*)
+    *(.eh_frame*)
+    *(.comment)
+    *(.rela*)
+    *(.symtab)
+    *(.strtab)
+    *(.shstrtab)
+  }
 }

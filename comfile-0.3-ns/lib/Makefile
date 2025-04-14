@@ -1,5 +1,12 @@
 CC := gcc
 CFLAGS := -Wall -Wextra -nostdlib -Os
+# Prevents "undefined reference to `__stack_chk_fail'"
+CFLAGS+=-fno-stack-protector
+CFLAGS+=-ffreestanding
+CFLAGS+=-nostartfiles
+CFLAGS+=-Wl,--build-id=none -Wa,--noexecstack
+CFLAGS+=-mno-shstk -fcf-protection=none
+CFLAGS+=-g0 -fno-ident -fno-asynchronous-unwind-tables -fno-unwind-tables
 
 OBJS := errno.o write.o read.o open.o close.o exit.o brk.o strlen.o fprint.o
 

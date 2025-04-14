@@ -3,6 +3,6 @@
 .PHONY: all clean
 
 all clean:
-	$(MAKE) -C mod $@
-	$(MAKE) -C lib $@
-	$(MAKE) -C src $@
+	for d in mod lib src; do \
+	(cd $$d ; $(MAKE) $@); \
+	done
