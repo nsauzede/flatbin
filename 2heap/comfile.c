@@ -46,9 +46,14 @@ static int load_comfile_binary(struct linux_binprm *lbp)
 
     filesize = generic_file_llseek(lbp->file, 0, SEEK_END);
     generic_file_llseek(lbp->file, 0, SEEK_SET);
+    long allocsize = pagealign(filesize);
 
     current->mm->start_code = loadaddr;
     current->mm->end_code = current->mm->start_code + filesize;
+    current->mm->start_data = current->mm->end_code;
+    current->mm->end_data = loadaddr + allocsize;
+    current->mm->start_brk = current->mm->end_data;
+    current->mm->brk = current->mm->start_brk;
 
     r = setup_arg_pages(lbp, STACK_TOP, EXSTACK_DEFAULT);
     if (r)
@@ -57,6 +62,10 @@ static int load_comfile_binary(struct linux_binprm *lbp)
     r = vm_mmap(lbp->file, loadaddr, filesize,
                 PROT_READ | PROT_WRITE | PROT_EXEC,
                 MAP_FIXED | MAP_PRIVATE, 0);
+    if (r < 0)
+        return r;
+    //r = vm_brk(current->mm->start_brk, 0);    // removed from recent kernels ?
+    r = vm_brk_flags(current->mm->start_brk, 0, 0);
     if (r < 0)
         return r;
 
